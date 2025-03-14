@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="px-4 mx-auto text-center contain-content">
+        {% if request.user.is_authenticated %}
+            <form method="post" action="." enctype="multipart/form-data" class="space-y-4 font-bold lg:text-lg text-sm">
+                {% csrf_token %}
+                <div>ENTER FILE WITH LOCATION DATA</div>
+                <input name="postal_data" type="file" accept=".csv" class="p-10 lg:p-20 font-bold border-2 rounded-lg text-sm lg:text-2xl"> <br>
+                <button class="bg-yellow-200 hover:bg-yellow-500 hover:text-white border rounded-lg p-2"> upload </button>
+            </form>
+        {% else %}
+            <div class="space-y-4 p-10 lg:p-15 font-bold border-2 rounded-lg text-sm lg:text-2xl">
+                <div>
+                    PLEASE LOGIN TO YOUR ACCOUNT TO UPLOAD YOUR FILE FOR PROCESSING
+                </div>
+                
+                <a href="{% url 'authapp:login' %}" class="bg-yellow-200 hover:bg-yellow-500 hover:text-white border rounded-lg p-2">LOGIN</a>
+                <div class="mt-10">dont't have an account?</div>
+                <a href="{% url 'authapp:signup' %}" class="bg-yellow-200 hover:bg-yellow-500 hover:text-white border rounded-lg p-2">SIGN-UP</a>
+                
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

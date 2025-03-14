@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}PROFILE{% endblock %}
+{% load static %}
+{% block logo %}<img class="h-30 lg:h-fit" src="{% static 'media/dowell_bw.svg' %}">{% endblock %}
+
+{% block content %}
+    <div class="w-full lg:w-4/5 bg-black rounded-xl text-center p-4 mx-auto font-bold text-white text-lg lg:text-2xl"> {{ request.user.get_full_name }} </div>
+
+    <div class="py-10 lg:w-4/5 mx-auto flex px-2 text-sm lg:text-xl font-serif">
+        <div class="p-4 border-2 rounded-lg w-1/2 mx-auto">
+            <div>
+               username: {{ request.user.username | upper }} <br>
+               name: {{request.user.get_full_name | upper }} <br>
+               joined: {{ request.user.date_joined }}
+            </div>
+        </div>
+        <div class="w-1/2">
+            <div class="flex h-full">
+                <a href="{% url 'authapp:settings' %}" class="my-auto mx-auto bg-yellow-200 hover:bg-yellow-500 hover:text-white border rounded-lg p-2">
+                    EDIT PROFILE INFO & LOGINS
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}NOTIFICATIONS{% endblock %}
+
+{% block content %}
+    <div class="w-full lg:w-4/5 bg-green-800 rounded-xl text-center p-4 mx-auto font-bold text-yellow-300 text-lg lg:text-xl mt-4 mb-4"> NOTIFICATIONS </div>
+
+    <div class="space-y-4 p-10 lg:p-15 font-serif rounded-lg text-sm lg:text-2xl">
+        <div class="border-2 p-6 lg:w-4/5 mx-auto">
+        {% if notifications %}
+            <div class="p-2 space-y-4">
+            {% for alert in notifications %}
+                {% if alert.viewed_status > 0 %}    
+                    <div class="bg-yellow-200 hover:bg-yellow-500 border rounded-lg p-2">
+                        <a class="size-full" href="{% url 'core:task_file' alert.file_id %}">
+                            <div>
+                                {{ alert.header }}<br>
+                                {{ alert.body }}<br>
+                                <em class="text-xs lg:text-sm"> {{alert.created_on }} </em> <br>
+                            </div>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="hover:bg-gray-300 border rounded-lg p-2">
+                        <a class="size-full" href="{% url 'core:task_file' alert.file_id %}">
+                            <div>
+                                <strong>{{ alert.header }}</strong><br>
+                                {{ alert.body }}<br>
+                                <em class="text-xs lg:text-sm"> {{alert.created_on }} </em> <br>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% else %}
+            <div>
+                YOU CURRENTLY HAVE NO NOTIFICATIONS
+            </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

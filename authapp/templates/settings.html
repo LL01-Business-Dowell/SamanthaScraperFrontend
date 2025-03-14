@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}SETTINGS{% endblock %}
+{% load static %}
+{% block logo %}<img class="h-30 lg:h-fit" src="{% static 'media/dowell_bw.svg' %}">{% endblock %}
+
+{% block content %}
+    <div class="w-full lg:w-4/5 bg-black rounded-xl text-center p-4 mx-auto font-bold text-white text-lg lg:text-2xl"> SETTINGS </div>
+
+    <div class="py-10 space-y-2 lg:w-4/5 mx-auto px-2 text-sm lg:text-xl font-serif">
+        <div  class="bg-yellow-200 hover:bg-yellow-500 hover:text-white border rounded-lg p-2">
+            <a href="{% url 'authapp:profile_settings' %}" class="size-full">
+                <div>
+                    UPDATE USER INFO
+                </div>
+            </a>
+        </div>
+    
+        <div  class="bg-yellow-200 hover:bg-yellow-500 hover:text-white border rounded-lg p-2">
+            <a href="{% url 'authapp:email_settings' %}" class="size-full">
+                <div>
+                    CHANGE EMAIL
+                </div>
+            </a>
+        </div>
+    
+        <div  class="bg-yellow-200 hover:bg-yellow-500 hover:text-white border rounded-lg p-2">
+            <a href="{% url 'authapp:password_settings' %}" class="size-full">
+                <div>
+                    CHANGE PASSWORD
+                </div>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

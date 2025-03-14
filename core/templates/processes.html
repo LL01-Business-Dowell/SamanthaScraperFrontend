@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %} FINISHED FILES {% endblock %}
+
+{% block content %}
+
+    <div class="py-4">
+        <div class="w-full lg:w-4/5 bg-green-800 rounded-xl text-center p-4 mx-auto font-bold text-yellow-300 text-lg lg:text-xl mb-4"> ALL TASKS </div>
+
+        <div class="w-full lg:w-4/5 mx-auto">
+            {% if data %}
+                <div class="space-y-2">
+                {% for file in data %}
+                        {% if file.download_link %}
+                        <div class="bg-green-300 hover:bg-green-500 border rounded-lg p-2">
+                            <a class="size-full" href="{% url 'core:task_file' file.file_id %}">
+                                <div>
+                                    ID- {{ file.file_id }}<br>
+                                    NAME- {{file.name}} <br>
+                                    STATUS- <em> now ready for download </em>
+                                </div>
+                            </a>
+                        </div>
+                        {% else %}
+                            <div class="bg-yellow-200 hover:bg-yellow-500 border rounded-lg p-2">
+                                <a class="size-full" href="{% url 'core:task_file' file.file_id %}">
+                                    <div>
+                                        ID- {{ file.file_id }}<br>
+                                        NAME- {{file.name}} <br>
+                                        STATUS- <em> file is still processing. try again later </em>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endif %}
+                {% endfor %}
+                </div>
+            {% else %}
+                <div class="px-5 py-10 space-y-4 font-mono lg:text-4xl text-lg mx-auto w-full text-center">
+                    <div>
+                        YOU CURRENTLY HAVE NO PROCESS IN YOUR HISTORY.
+                    </div>
+                    <div>
+                        <a href="{% url 'core:home' %}" class="p-4 text-white border-white border rounded-2xl text-sm lg:text-xl font-mono font-thin">
+                            START CREATING
+                        </a>
+                    </div>
+                </div>
+            {% endif %}  
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}TASK {{ data.file_id }} {% endblock %}
+{% load static %}
+{% block logo %}<img class="h-30 lg:h-fit" src="{% static 'media/dowell_bw.svg' %}">{% endblock %}
+
+{% block content %}
+    <div class="w-full lg:w-4/5 bg-black rounded-xl text-center p-4 mx-auto font-bold text-white text-lg lg:text-2xl"> {{ data.name }}-{{ data.file_id }} </div>
+
+
+    <div class="py-10 lg:w-4/5 mx-auto px-2 text-sm lg:text-xl font-serif">
+        <div>
+            <div>NAME: {{ data.name }} </div>
+            <div>FILE ID: {{ data.file_id }} </div>
+        </div>
+        
+        <div>
+            <div class="rounded-xl text-center p-4 mx-auto font-bold text-white bg-black text-lg lg:text-xl mt-4 mb-4"> STATUS </div>
+            {% if data.download_link %}
+            <div class="bg-green-600 hover:bg-green-800 hover:text-white border-2 rounded-lg p-2 ml-auto">
+                <a href="{{ data.download_link }}" class="size-auto bg-amber-200 inline">
+                    <div>
+                        FINISHED<br>
+                        <em>click here to download your file</em>
+                    </div>
+                </a>
+            </div>
+            {% else %}
+            <div class="border-black border-2 text-black rounded-lg p-2 ml-auto">
+                PROCESSING<br>
+                 <em>check back later</em>
+            </div>
+            {% endif %}
+    </div>
+
+{% endblock %}
